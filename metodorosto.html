@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch This Free Training: How I Grew My Business to $1M in 12 Months</title>
+  <style>
+    :root {
+      --bg: #050508;
+      --surface: #0e0e14;
+      --surface-2: #14141c;
+      --surface-3: #1a1a26;
+      --red: #ff3d3d;
+      --red-dim: rgba(255,61,61,0.2);
+      --red-glow: rgba(255,61,61,0.25);
+      --text: #f0f0fa;
+      --text-sub: #8888a8;
+      --text-dim: #44445a;
+      --border: rgba(255,255,255,0.055);
+      --border-red: rgba(255,61,61,0.3);
+      --amber: #fbbf24;
+      --green: #22c55e;
+      --radius: 14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+
+    /* Live bar */
+    .live-bar {
+      background: var(--red); color: #fff;
+      text-align: center; padding: 11px 24px;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.2px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .live-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.4;transform:scale(0.7);} }
+
+    /* Nav */
+    nav { padding: 18px 28px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+    .logo { font-size: 19px; font-weight: 900; color: var(--text); letter-spacing: -0.5px; }
+    .logo span { color: var(--red); }
+
+    /* Above fold */
+    .above-fold { padding: 64px 0 52px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,61,61,0.1); border: 1px solid var(--border-red);
+      color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 7px 18px; border-radius: 40px; margin-bottom: 28px;
+    }
+    .above-fold h1 {
+      font-size: clamp(28px, 5vw, 50px); font-weight: 900; line-height: 1.14;
+      letter-spacing: -0.7px; max-width: 720px; margin: 0 auto 18px;
+    }
+    .above-fold h1 em { color: var(--red); font-style: normal; }
+    .above-fold .sub { font-size: 17px; color: var(--text-sub); max-width: 520px; margin: 0 auto; }
+
+    /* Video */
+    .video-section { padding: 0 0 12px; }
+    .video-outer {
+      max-width: 760px; margin: 0 auto;
+      border-radius: 20px; overflow: hidden;
+      background: #000;
+      box-shadow: 0 0 0 1px var(--border-red), 0 32px 80px rgba(0,0,0,0.8), 0 0 80px var(--red-glow);
+      position: relative;
+    }
+    .video-placeholder {
+      position: relative; width: 100%; aspect-ratio: 16/9; cursor: pointer;
+      background: radial-gradient(ellipse at 40% 40%, #1a0808 0%, #050508 100%);
+    }
+    /* Cinematic scan lines */
+    .video-placeholder::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+      z-index: 2;
+    }
+    .video-bg-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,61,61,0.12) 0%, transparent 70%);
+    }
+    .play-wrap {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+    .play-ring {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: rgba(255,61,61,0.15); border: 1.5px solid var(--border-red);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; transition: transform 0.25s;
+    }
+    .play-ring::before {
+      content: ""; position: absolute; inset: -12px; border-radius: 50%;
+      border: 1px solid rgba(255,61,61,0.15);
+    }
+    .play-ring::after {
+      content: ""; position: absolute; inset: -24px; border-radius: 50%;
+      border: 1px solid rgba(255,61,61,0.07);
+    }
+    .video-placeholder:hover .play-ring { transform: scale(1.06); }
+    .play-inner {
+      width: 56px; height: 56px; border-radius: 50%; background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 32px var(--red-glow);
+    }
+    .play-inner svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
+    .video-duration {
+      position: absolute; bottom: 14px; right: 16px; z-index: 4;
+      background: rgba(0,0,0,0.75); color: var(--text-sub);
+      font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .video-caption { text-align: center; font-size: 13px; color: var(--text-dim); margin-top: 14px; }
+
+    /* Scarcity pill */
+    .scarcity-pill {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 20px;
+      margin: 24px auto 0; max-width: 440px;
+      font-size: 14px; font-weight: 600;
+    }
+    .scarcity-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; flex-shrink: 0; animation: pulse 1.5s ease-in-out infinite; }
+    .scarcity-pill span { color: var(--red); }
+
+    /* Divider */
+    .divider { height: 1px; background: var(--border); margin: 64px 0 0; }
+
+    /* Takeaways */
+    .takeaways { padding: 64px 0 56px; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; text-align: center; }
+    .takeaways h2 { font-size: clamp(22px, 4vw, 36px); font-weight: 900; text-align: center; margin-bottom: 40px; letter-spacing: -0.3px; }
+    .takeaways-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+    .tc {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 26px;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .tc::before {
+      content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .tc:hover { border-color: var(--border-red); background: var(--surface-2); }
+    .tc:hover::before { opacity: 1; }
+    .tc-num { font-size: 40px; font-weight: 900; color: var(--red); opacity: 0.2; line-height: 1; margin-bottom: 12px; }
+    .tc h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .tc p { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+
+    /* Speaker */
+    .speaker { padding: 64px 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .speaker-inner { display: grid; grid-template-columns: 160px 1fr; gap: 40px; align-items: start; }
+    .speaker-photo {
+      width: 160px; height: 160px; border-radius: 50%;
+      background: var(--surface-3); border: 2px solid var(--border-red);
+      display: flex; align-items: center; justify-content: center; font-size: 64px;
+      box-shadow: 0 0 32px rgba(255,61,61,0.1);
+    }
+    .speaker-info .section-label { text-align: left; }
+    .speaker-info h2 { font-size: 28px; font-weight: 900; margin-bottom: 4px; }
+    .speaker-info .role { font-size: 14px; color: var(--red); font-weight: 600; margin-bottom: 18px; }
+    .speaker-info p { font-size: 15px; color: var(--text-sub); margin-bottom: 10px; }
+    .stats-row { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+    .stat .num { font-size: 24px; font-weight: 900; color: var(--text); }
+    .stat .lbl { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+    .verified-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2);
+      color: var(--green); font-size: 12px; font-weight: 600;
+      padding: 5px 14px; border-radius: 20px; margin-top: 14px;
+    }
+
+    /* CTA */
+    .cta-section { padding: 80px 0; text-align: center; }
+    .cta-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 24px; padding: 52px 44px; max-width: 580px; margin: 0 auto;
+      box-shadow: 0 0 0 1px var(--border-red), 0 32px 80px rgba(0,0,0,0.5), 0 0 60px rgba(255,61,61,0.05);
+      position: relative; overflow: hidden;
+    }
+    .cta-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+    }
+    .cta-card .eyebrow { margin-bottom: 16px; }
+    .cta-card h2 { font-size: clamp(22px, 4vw, 32px); font-weight: 900; margin-bottom: 12px; letter-spacing: -0.3px; }
+    .cta-card .cta-sub { font-size: 15px; color: var(--text-sub); margin-top: 10px; margin-bottom: 0; }
+    .price-display { margin: 24px 0 8px; }
+    .price-big { font-size: 56px; font-weight: 900; color: var(--text); line-height: 1; }
+    .price-note { font-size: 14px; color: var(--text-sub); margin-bottom: 32px; }
+    .cta-features { list-style: none; margin-bottom: 32px; text-align: left; }
+    .cta-features li { padding: 9px 0; font-size: 14px; color: var(--text-sub); border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
+    .cta-features li:last-child { border-bottom: none; }
+    .cta-features li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .btn-cta {
+      display: block; width: 100%; padding: 19px;
+      background: var(--red); color: #fff;
+      font-size: 17px; font-weight: 800; border-radius: 12px;
+      text-decoration: none; text-align: center;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.1px;
+    }
+    .btn-cta:hover { background: #e82e2e; transform: translateY(-2px); box-shadow: 0 10px 36px var(--red-glow); }
+    .cta-footer { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--text-dim); margin-top: 18px; }
+
+    /* Proof strip */
+    .proof-strip { background: var(--surface); padding: 44px 0; text-align: center; border-top: 1px solid var(--border); }
+    .proof-strip p { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .proof-row { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .proof-item .num { font-size: 30px; font-weight: 900; color: var(--text); }
+    .proof-item .lbl { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+    footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--text-dim); }
+    footer a { color: var(--text-dim); text-decoration: none; margin: 0 10px; }
+    footer a:hover { color: var(--text-sub); }
+
+    @media (max-width: 620px) {
+      .speaker-inner { grid-template-columns: 1fr; }
+      .speaker-photo { width: 100px; height: 100px; font-size: 40px; }
+      .cta-card { padding: 32px 20px; }
+    }
+  </style>
+<style id="htmlpub-breakpoint-visibility">@media (max-width: 767px) { .hp-hide-mobile { display: none !important; } }
+@media (min-width: 768px) and (max-width: 1199px) { .hp-hide-tablet { display: none !important; } }
+@media (min-width: 1200px) { .hp-hide-desktop { display: none !important; } }</style><style id="nova-responsive-styles">@media (max-width: 767px){
+[data-nova-id="n-uh0s4ji"]{font-size:24px!important}
+[data-nova-id="n-hahk8jf"]{font-size:inherit!important}
+[data-nova-id="n-s3ph8f1"]{font-size:inherit!important}
+[data-nova-id="n-nmqruhr"]{padding-top:28px!important;padding-bottom:17px!important}
+[data-nova-id="n-o0rxsck"]{padding-top:14px!important;padding-left:28px!important;padding-bottom:0px!important}
+[data-nova-id="n-7pqikh5"]{position:static!important;font-size:16px!important;margin-top:0px!important;margin-right:0px!important;margin-bottom:0px!important;margin-left:0px!important;display:inline-flex!important;grid-template-columns:repeat(1, 1fr)!important;grid-template-rows:repeat(1, 1fr)!important;flex-direction:row!important;justify-content:center!important}
+[data-nova-id="n-06guixc"]{padding-top:0px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important}
+[data-nova-id="n-tfor2ub"]{position:static!important;height:185px!important;margin-top:0px!important;margin-right:0px!important;margin-bottom:0px!important;margin-left:0px!important;padding-right:50px!important}
+[data-nova-id="n-77pcg1m"]{display:block!important;padding-top:12px!important;padding-right:12px!important;padding-bottom:12px!important;padding-left:12px!important;margin-top:20px!important;margin-right:9px!important;margin-bottom:9px!important;margin-left:9px!important;width:299px!important;background-color:rgb(194, 0, 0)!important}
+[data-nova-id="n-8dbpyxm"]{height:62px!important;width:319px!important;max-width:352px!important}
+[data-nova-id="n-6x7p7pj"]{padding-right:28px!important;padding-left:28px!important;margin-top:0px!important;margin-right:0px!important;margin-bottom:0px!important;margin-left:0px!important;padding-top:0px!important;padding-bottom:0px!important}
+[data-nova-id="n-di31skd"]{padding-top:45px!important}
+[data-nova-id="n-ryutfj4"]{margin-left:0px!important;margin-bottom:43px!important;font-size:21px!important}
+[data-nova-id="n-hzmmgqt"]{margin-bottom:21px!important;margin-right:21px!important;margin-top:-37px!important;margin-left:14px!important;text-align:center!important;font-size:17px!important;font-weight:400!important}
+[data-nova-id="n-bdndx3c"]{font-size:19px!important}
+[data-nova-id="n-53ni74k"]{text-align:left!important;background-color:rgba(255, 255, 255, 0)!important;padding-top:0px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important}
+[data-nova-id="n-yit4dql"]{background-color:rgb(0, 0, 0)!important}
+[data-nova-id="n-2hp40em"]{display:block!important;margin-right:50px!important;margin-bottom:10px!important;margin-left:50px!important;text-align:center!important}
+[data-nova-id="n-t2vj9sy"]{text-align:center!important;line-height:34.2px!important;font-size:28px!important}
+[data-nova-id="n-8wu7dqu"]{text-align:center!important}
+[data-nova-id="n-b5rnexs"]{margin-bottom:-20px!important}
+[data-nova-id="n-1j9dovb"]{padding-top:32px!important;padding-right:0px!important;padding-bottom:12px!important;background-color:rgb(0, 0, 0)!important}
+[data-nova-id="n-6zjzox7"]{text-align:center!important}
+[data-nova-id="n-bzqi4fd"]{width:137px!important}
+[data-nova-id="n-32jye6e"]{background-color:rgb(186, 0, 0)!important;padding-bottom:10px!important;font-size:13px!important}
+[data-nova-id="n-fk4u8qb"]{font-size:18px!important;text-align:center!important}
+[data-nova-id="n-8k7rut6"]{text-align:center!important;line-height:33.2px!important}
+[data-nova-id="n-vtstvpy"]{text-align:center!important}
+[data-nova-id="n-a8sca8r"]{margin-top:0px!important;margin-right:0px!important;margin-bottom:0px!important;margin-left:0px!important;width:315px!important;font-size:22px!important}
+[data-nova-id="n-ay5ogm7"]{font-size:22px!important}
+[data-nova-id="n-zppa5b5"]{font-size:22px!important}
+[data-nova-id="n-8umbrgk"]{font-size:22px!important}
+[data-nova-id="n-953e3tc"]{font-size:22px!important}
+[data-nova-id="n-di32si0"]{font-size:22px!important}
+[data-nova-id="n-bmjz8mo"]{background-color:rgb(0, 0, 0)!important}
+[data-nova-id="n-7w4i0ip"]{background-color:rgba(136, 136, 168, 0)!important}
+[data-nova-id="n-9m26xye"]{background-color:rgba(136, 136, 168, 0)!important}
+[data-nova-id="n-jl5u5au"]{background-color:rgba(136, 136, 168, 0)!important}
+[data-nova-id="n-rtr0jb7"]{line-height:32.6px!important;margin-right:0px!important;margin-left:-4px!important}
+[data-nova-id="n-6e7s962"]{letter-spacing:1px!important;display:block!important;margin-top:24px!important;margin-right:58px!important;margin-bottom:-40px!important;margin-left:50px!important;padding-top:13px!important;padding-right:13px!important;padding-bottom:13px!important;padding-left:13px!important;width:224px!important;height:56px!important;position:static!important;text-align:center!important;font-size:20px!important;background-color:rgb(232, 0, 0)!important}
+[data-nova-id="n-n4ikgtu"]{padding-left:24px!important;padding-bottom:0px!important;padding-top:40px!important;background-color:rgba(133, 133, 145, 0)!important}
+[data-nova-id="n-64c0gd6"]{font-size:33px!important;margin-left:17px!important;margin-right:17px!important}
+[data-nova-id="n-8zwxhnw"]{background-color:rgb(227, 0, 0)!important;padding-top:15px!important;padding-right:15px!important;padding-bottom:15px!important;padding-left:15px!important}
+[data-nova-id="n-5ai7dva"]{background-color:rgb(240, 0, 0)!important;padding-top:15px!important;padding-right:15px!important;padding-bottom:15px!important;padding-left:15px!important}
+[data-nova-id="n-jdmlfz7"]{margin-top:4px!important;margin-right:4px!important;margin-bottom:4px!important;margin-left:5px!important;padding-top:30px!important}
+[data-nova-id="n-qawq25l"]{padding-top:0px!important;padding-right:21px!important;padding-bottom:29px!important}
+[data-nova-id="n-ph3xvdz"]{text-align:center!important}
+[data-nova-id="n-seegez1"]{margin-left:49px!important;margin-right:42px!important;margin-bottom:4px!important;line-height:26.2px!important;padding-top:10px!important;padding-right:0px!important;padding-bottom:6px!important;padding-left:0px!important}
+[data-nova-id="n-v6ejltr"]{margin-bottom:14px!important;margin-right:30px!important;margin-top:-9px!important;margin-left:25px!important;font-size:17px!important}
+[data-nova-id="n-pkebojn"]{padding-top:32px!important;padding-bottom:25px!important}
+[data-nova-id="n-ib6s4vo"]{font-size:30px!important;margin-bottom:11px!important;margin-right:0px!important}
+[data-nova-id="n-8duxux8"]{padding-bottom:35px!important;padding-top:35px!important}
+[data-nova-id="n-modzduv"]{text-align:center!important;padding-bottom:20px!important}
+[data-nova-id="n-karduxe"]{text-align:center!important;letter-spacing:0px!important;line-height:30px!important}
+[data-nova-id="n-qbm8b6d"]{text-align:center!important;font-size:17px!important}
+[data-nova-id="n-kp7wekx"]{text-align:center!important;padding-right:13px!important;padding-top:5px!important;padding-left:18px!important;margin-right:45px!important;margin-top:0px!important;margin-bottom:20px!important;margin-left:49px!important}
+[data-nova-id="n-kzze9ym"]{padding-right:20px!important;padding-bottom:34px!important;padding-top:29px!important;margin-top:0px!important;margin-right:0px!important;margin-bottom:0px!important;margin-left:0px!important}
+[data-nova-id="n-ixia4q1"]{margin-right:25px!important;margin-top:5px!important;margin-bottom:16px!important;margin-left:45px!important}
+[data-nova-id="n-n2cqol3"]{margin-bottom:7px!important;text-align:center!important;letter-spacing:0px!important;line-height:30px!important}
+[data-nova-id="n-cswbeut"]{text-align:center!important;font-size:17px!important}
+[data-nova-id="n-de592b8"]{text-align:center!important;padding-bottom:20px!important;padding-right:0px!important}
+[data-nova-id="n-hc37uid"]{text-align:center!important}
+[data-nova-id="n-ymb2zzg"]{padding-top:6px!important}
+[data-nova-id="n-2pqqgga"]{padding-top:24px!important;padding-bottom:40px!important}
+[data-nova-id="n-b6mbq3w"]{padding-bottom:24px!important;padding-top:24px!important}
+[data-nova-id="n-7t7yri9"]{padding-right:24px!important;padding-bottom:24px!important;padding-top:24px!important}
+[data-nova-id="n-obu6ywe"]{padding-right:24px!important;padding-bottom:24px!important;padding-top:24px!important;margin-top:0px!important;margin-right:0px!important;margin-bottom:0px!important;margin-left:0px!important}
+[data-nova-id="n-yaqwnld"]{padding-top:24px!important;padding-bottom:24px!important}
+[data-nova-id="n-oklemaz"]{font-size:30px!important;margin-bottom:45px!important;margin-top:26px!important}
+[data-nova-id="n-ns4q9cc"]{padding-top:54px!important}
+[data-nova-id="n-09x106r"]{padding-top:40px!important;padding-bottom:40px!important}
+[data-nova-id="n-81dddw4"]{padding-top:63px!important;padding-bottom:338px!important;display:flex!important;padding-right:0px!important;padding-left:0px!important}
+[data-nova-id="n-rb6qhew"]{padding-bottom:0px!important;padding-left:0px!important;padding-right:0px!important;padding-top:0px!important;margin-top:0px!important;margin-right:0px!important;margin-bottom:0px!important;margin-left:0px!important;display:flex!important}
+[data-nova-id="n-jrb3994"]{text-align:center!important;margin-top:18px!important;width:150px!important;padding-top:0px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important;margin-right:4px!important;margin-left:12px!important;margin-bottom:26px!important;font-size:16px!important}
+[data-nova-id="n-2krxz25"]{padding-top:0px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important;margin-top:99px!important;margin-right:98px!important;margin-bottom:98px!important;margin-left:98px!important;width:42%!important;display:block!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;position:static!important}
+[data-nova-id="n-omsaodw"]{flex-direction:column!important;display:block!important;margin-right:0px!important;margin-left:0px!important;margin-top:0px!important;margin-bottom:0px!important;width:300px!important;height:700px!important}
+[data-nova-id="n-q44dz3c"]{margin-bottom:-178px!important;padding-bottom:0px!important}
+[data-nova-id="n-8dtid1y"]{padding-top:40px!important}
+[data-nova-id="n-471lbg4"]{width:300px!important;margin-left:14px!important;margin-right:14px!important;margin-top:14px!important;margin-bottom:14px!important;height:700px!important}
+[data-nova-id="n-pnm56u0"]{padding-top:0px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important;margin-top:0px!important;margin-right:0px!important;margin-bottom:0px!important;margin-left:0px!important;width:100%!important}
+[data-nova-id="n-wwuhfvz"]{width:100%!important;margin-top:0px!important;margin-right:0px!important;margin-left:0px!important;margin-bottom:0px!important}
+[data-nova-id="n-j3fc27t"]{text-align:center!important;margin-bottom:114px!important;margin-top:20px!important;margin-right:8px!important;margin-left:19px!important;font-size:16px!important}
+[data-nova-id="n-7twvrv5"]{margin-bottom:0px!important;text-align:center!important;padding-top:12px!important;padding-right:0px!important;padding-bottom:20px!important;padding-left:0px!important;font-size:16px!important}
+[data-nova-id="n-gsm0jm9"]{padding-top:12px!important;text-align:center!important;font-size:16px!important;padding-bottom:26px!important}
+[data-nova-id="n-q26y9cm"]{text-align:center!important;padding-top:17px!important;font-size:16px!important}
+[data-nova-id="n-cwypa6p"]{padding-top:0px!important}
+[data-nova-id="n-0ksz8u4"]{padding-top:0px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important;margin-top:12px!important}
+[data-nova-id="n-hy6wik3"]{padding-top:15px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important;text-align:center!important;font-size:16px!important}
+[data-nova-id="n-b8cc2kh"]{display:flex!important;padding-top:0px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important}
+[data-nova-id="n-n98kl9g"]{margin-top:52px!important;padding-top:0px!important;margin-right:3px!important;margin-left:27px!important;margin-bottom:27px!important;line-height:23px!important;font-size:19px!important}
+[data-nova-id="n-fkqbe0s"]{display:flex!important;margin-bottom:-51px!important;padding-bottom:0px!important;padding-top:0px!important}
+[data-nova-id="n-nq4oghm"]{margin-left:82px!important;margin-bottom:86px!important;margin-right:-14px!important;margin-top:49px!important}
+[data-nova-id="n-iv6xzjy"]{margin-top:-25px!important;display:flex!important;padding-top:0px!important}
+[data-nova-id="n-6139m5q"]{margin-left:22px!important;margin-bottom:112px!important;margin-top:89px!important}
+[data-nova-id="n-lvs1hw8"]{padding-top:0px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important;margin-top:0px!important;margin-right:6px!important;margin-bottom:26px!important;margin-left:0px!important;display:inline-block!important;width:194%!important}
+[data-nova-id="n-06qyhwj"]{width:130%!important}
+[data-nova-id="n-ienyjbb"]{width:130%!important}
+[data-nova-id="n-btt33hf"]{margin-right:-26px!important;margin-left:0px!important;margin-bottom:-9px!important;margin-top:12px!important}
+[data-nova-id="n-bc1kvk8"]{margin-bottom:76px!important;margin-top:36px!important}
+[data-nova-id="n-bvtw5qe"]{margin-bottom:12px!important}
+[data-nova-id="n-ol3cgul"]{margin-bottom:1px!important;font-size:17px!important}
+[data-nova-id="n-ag2bhv2"]{padding-top:0px!important;padding-right:0px!important;padding-bottom:0px!important;padding-left:0px!important;margin-top:35px!important}
+[data-nova-id="n-2wyr3s4"]{font-size:17px!important}
+[data-nova-id="n-rl2gxda"]{font-size:17px!important}
+[data-nova-id="n-bffxc9y"]{font-size:17px!important}
+[data-nova-id="n-9ovdca5"]{font-size:17px!important}
+[data-nova-id="n-bvkqa5r"]{font-size:17px!important}
+[data-nova-id="n-euamti3"]{font-size:17px!important}
+[data-nova-id="n-qj5w8gq"]{text-align:center!important}
+[data-nova-id="n-704ng65"]{text-align:center!important}
+[data-nova-id="n-ol3x053"]{margin-bottom:-36px!important}
+}
+</style></head>
+<body style="" class="">
+
+  <div class="live-bar" data-nova-id="n-32jye6e" style=""><span class="live-dot"></span>ATENÇÃO: ESTA CONDIÇÃO ESPECIAL PODE SER ENCERRADA A QUALQUER MOMENTO</div>
+
+  <nav data-persist-nav-id="nav-5wqfukn" data-nova-id="n-o0rxsck" style=""><div class="logo" data-persist-nav-logo="" data-nova-id="n-6zjzox7" style=""><img src="/api/library/kiy50muqzgarcf4uup43tqa3" alt="ChatGPT Image 28 de ago. de 2026, 22 07 45" style="max-width: 100%; height: auto;" data-persist-nav-logo-ar="1.5" data-nova-id="n-bzqi4fd"></div></nav>
+
+  <section class="above-fold" data-nova-id="n-nmqruhr" style="">
+    <div class="container" style="">
+      
+      
+      <h1 data-nova-id="n-uh0s4ji" style="">Descubra a sequência de <span style="font-size: 26px;" data-nova-id="n-hahk8jf"><span style="color: rgb(255, 11, 11);">REJUVENESCIMENTO FACIAL</span></span><br>que pode ajudar a recuperar a aparência e um rosto mais jovem, com apenas <span style="color: rgb(228, 22, 22);"><span style="font-size: 27px;" data-nova-id="n-s3ph8f1">3 MINUTOS POR DIA</span></span></h1><p class="sub" style="">Siga o passo a passo completo e descubra como uma rotina de apenas 3 minutos por dia pode ajudar a deixar o rosto com uma aparência mais firme, definida e rejuvenescida, sem procedimentos complicados ou equipamentos especiais.</p>
+    </div>
+  </section>
+
+  <div class="container" data-nova-id="n-6x7p7pj" style="">
+      
+      
+
+      <a href="#pagamento" style="display: inline-block; text-decoration: none; cursor: pointer; line-height: 1.2; padding: 19px; border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif; font-weight: 800; letter-spacing: 0.1px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; background: rgb(255, 61, 61); color: rgb(255, 255, 255); border-width: medium; border-style: none; border-color: currentcolor; border-image: none; opacity: 0.97; overflow: auto; margin: 29px 0px 6px 243px;" data-nova-id="n-77pcg1m" data-persist-name="hero">QUERO APRENDER O MÉTODO</a>
+    </div><div class="container"></div>
+
+  <section class="takeaways" style="background-color: rgba(0, 0, 0, 0); background-image: none;" data-nova-id="n-di31skd">
+    <div class="container" style="">
+      
+      <h2 data-nova-id="n-ryutfj4" style="">QUANDO A SUA APARÊNCIA COMEÇA A MUDAR.</h2>
+      <h3 style="font-size: 1.5rem; font-weight: 600; line-height: 1.3; margin: 0px 0px 1rem; font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(136, 136, 168); letter-spacing: -0.7px;" data-nova-id="n-hzmmgqt">Talvez o que mais incomode não seja apenas o que você vê no espelho.</h3><div class="takeaways-grid" style="">
+        <div class="tc" style="border-color: rgb(255, 61, 61);">
+          
+          <div class="tc-num" style="">01</div><h3 style="">NAS FOTOGRAFIAS</h3>
+          <p style="">Você evita determinadas fotos ou não gosta de se ver nelas como antes.</p>
+        </div>
+        
+        <div class="tc" style="border-color: rgb(255, 61, 61);">
+          
+          <div class="tc-num" style="">02</div><h3 style="">NO ESPELHO</h3>
+          <p style="">O contorno parece menos definido e algumas zonas do rosto começam a chamar mais atenção.</p>
+        </div><div class="tc" style="border-color: rgb(255, 61, 61);">
+          
+          <div class="tc-num" style="">03</div><h3 style="">NA SUA AUTOESTIMA</h3>
+          <p style="">Pequenas mudanças na aparência podem afetar a forma como você se sente ao olhar para si.</p>
+        </div>
+        
+        
+        
+      </div>
+    </div>
+  </section><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-nova-id="n-n4ikgtu" data-htmlpub-settled="1"><div style="max-width: 1080px; margin: 0px auto;"><h2 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 12px; text-align: center; font-size: clamp(1.5rem, 3vw, 2.25rem);" data-nova-id="n-rtr0jb7">Conheça o método<br>&nbsp;<span style="color: rgb(186, 0, 0);">REJUVENESCIMENTO </span><span style="color: rgb(186, 0, 0);">FACIAL</span></h2><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px auto 40px; max-width: 560px; text-align: center; font-size: 1rem; line-height: 1.6; opacity: 0.8;" data-nova-id="n-2wyr3s4">A sequência exata de movimentos faciais para eliminar o rosto derretido e as marcas de expressões, sem procedimentos estéticos e equipamentos caros, <br>apenas 3 minutos.</p><div style="display: flex; flex-wrap: wrap; gap: 32px;"><div style="flex: 1 1 260px; min-width: 0px;" data-nova-id="n-fkqbe0s"><div style="max-width: 64px; margin-bottom: 16px;"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(21.333333333333336 21.333333333333336) scale(0.8888888888888888)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 64 / 64; object-fit: cover; border-width: 95px; border-radius: 14px; overflow: hidden;" data-nova-id="n-lvs1hw8"></div><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.125rem;" data-nova-id="n-nq4oghm">PREPARE<br></h3></div><div style="flex: 1 1 260px; min-width: 0px;" data-nova-id="n-b8cc2kh"><div style="max-width: 64px; margin-bottom: 16px;"></div><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(21.333333333333336 21.333333333333336) scale(0.8888888888888888)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 64 / 64; object-fit: cover; border-width: 45px; border-radius: 14px; overflow: hidden;" data-htmlpub-settled="1"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.125rem;" data-nova-id="n-n98kl9g">TÉCNICA DA MASSAGEM<br></h3></div><div style="flex: 1 1 260px; min-width: 0px;" data-nova-id="n-iv6xzjy"><div style="max-width: 64px; margin-bottom: 16px;"></div><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(21.333333333333336 21.333333333333336) scale(0.8888888888888888)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 64 / 64; object-fit: cover; border-width: 45px; border-radius: 14px; overflow: hidden;" data-htmlpub-settled="1" data-nova-id="n-bc1kvk8"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.125rem;" data-nova-id="n-6139m5q">APLIQUE O MÉTODO</h3></div></div></div></section><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-nova-id="n-8dtid1y"><div class="hp-col" style="max-width: 1080px; margin: 0px auto; min-height: 120px;" data-nova-id="n-q44dz3c"><h2 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 12px; text-align: center; font-size: clamp(1.5rem, 3vw, 2.25rem);" data-nova-id="n-bvtw5qe">O QUE VOCÊ<span style="color: rgb(186, 0, 0);"> RECEBE:</span></h2><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px auto 40px; max-width: 560px; text-align: center; font-size: 1rem; line-height: 1.6; opacity: 0.8; color: rgb(136, 136, 168);" data-nova-id="n-ol3cgul">Tudo o que você precisa para começar a sua rotina!</p></div></section><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-nova-id="n-81dddw4" data-htmlpub-settled="1"><div style="display: flex; flex-wrap: wrap; gap: 32px; overflow: visible; border-radius: 0px;" data-nova-id="n-omsaodw"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(21.333333333333336 21.333333333333336) scale(0.8888888888888888)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 64 / 64; object-fit: cover; overflow: hidden; border-radius: 14px;" data-htmlpub-settled="1" data-nova-id="n-0ksz8u4"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.125rem;" data-nova-id="n-j3fc27t">ROTINA FACIAL GUIADA</h3><div style="flex: 1 1 260px; min-width: 0px;"><div style="max-width: 64px; margin-bottom: 16px;"></div><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(21.333333333333336 21.333333333333336) scale(0.8888888888888888)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 64 / 64; object-fit: cover; overflow: hidden; border-radius: 14px;" data-htmlpub-settled="1" data-nova-id="n-cwypa6p"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.125rem;" data-nova-id="n-7twvrv5">CARTILHA PASSO A PASSO<br>MASSAGEM FACIAL PAPADA<br></h3></div><div style="flex: 1 1 260px; min-width: 0px;"><div style="max-width: 64px; margin-bottom: 16px;"></div><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(21.333333333333336 21.333333333333336) scale(0.8888888888888888)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 64 / 64; object-fit: cover; overflow: hidden; border-radius: 14px;" data-htmlpub-settled="1"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.125rem;" data-nova-id="n-q26y9cm">CARTILHA PASSO A PASSO<br>MASSAGEM FACIAL PÉ DE GALINHA</h3></div></div><div style="max-width: 1080px; margin: 0px auto;" data-nova-id="n-471lbg4"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(21.333333333333336 21.333333333333336) scale(0.8888888888888888)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 64 / 64; object-fit: cover; overflow: hidden; border-radius: 14px;" data-nova-id="n-wwuhfvz"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.125rem;" data-nova-id="n-jrb3994">CARTILHA PASSO A PASSO MASSAGEM FACIAL ROSTO DERRETIDO<br></h3><div style="flex: 1 1 260px; min-width: 0px;"><div style="max-width: 64px; margin-bottom: 16px;"></div><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(21.333333333333336 21.333333333333336) scale(0.8888888888888888)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 64 / 64; object-fit: cover; overflow: hidden; border-radius: 14px;" data-htmlpub-settled="1" data-nova-id="n-ag2bhv2"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.125rem;" data-nova-id="n-gsm0jm9">CARTILHA PASSO A PASSO MASSAGEM FACIAL BIGODE CHINÊS</h3><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(21.333333333333336 21.333333333333336) scale(0.8888888888888888)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 64 / 64; object-fit: cover; overflow: hidden; border-radius: 14px;" data-htmlpub-settled="1"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.125rem;" data-htmlpub-settled="1" data-nova-id="n-hy6wik3">CARTILHA PASSO A PASSO<br>MASSAGEM FACIAL PÉ DE GALINHA</h3></div></div></section><div class="container" data-nova-id="n-8duxux8" style="" data-htmlpub-settled="1" data-persist-name="pagamento" id="pagamento">
+      <div class="cta-card" data-nova-id="n-kzze9ym" style=""><div class="eyebrow" data-nova-id="n-kp7wekx" style="">ACESSSO IMEDIATO</div><h2 data-nova-id="n-karduxe" style="">MÉTODO FACIAL ESSENCIAL</h2>
+        <p class="cta-sub" data-nova-id="n-qbm8b6d" style="">O método principal para começar sua rotina.</p>
+        <div class="price-display">
+          <div class="price-big" data-nova-id="n-modzduv" style="">€7,90</div>
+        </div>
+        
+        
+        <a href="https://pay.hotmart.com/P107394701W?bid=1788176390582" class="btn-cta" style="color: rgb(255, 255, 255);" data-nova-id="n-5ai7dva" data-persist-name="ESSENCIAL - 7,90" data-conversion-type="lead" data-conversion-name="ACESSO COMPLETO" data-lp-conversion="c1ztulixsys8mie74wkj1jkt">ACESSO COMPLETO</a>
+        <div class="cta-footer" data-nova-id="n-ph3xvdz" style="">🔒 COMPRA SEGURA&nbsp;<br>GARANTIA DE 7 DIAS</div>
+      </div><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-nova-id="n-qawq25l"></section><div class="cta-card" data-nova-id="n-jdmlfz7" style="">
+        <div class="eyebrow" data-nova-id="n-ixia4q1" style="">ACESSSO IMEDIATO&nbsp;<br></div>
+        <h2 data-nova-id="n-n2cqol3" style="">&nbsp;MÉTODO FACIAL PREMIUM</h2>
+        <p class="cta-sub" data-nova-id="n-cswbeut" style="">O método principal para começar sua rotina.</p>
+        <div class="price-display">
+          <div class="price-big" data-nova-id="n-de592b8" style="">€14,90</div>
+        </div>
+        
+        
+        <a href="https://pay.hotmart.com/P107394701W?off=3qlagfku" class="btn-cta" data-nova-id="n-8zwxhnw" style="" data-persist-name="PREMIUM - 14,90">ACESSO COMPLETO</a>
+        <div class="cta-footer" style="">🔒 COMPRA SEGURA&nbsp;<br>GARANTIA DE 7 DIAS</div>
+      </div>
+
+      
+    </div><section class="cta-section" data-nova-id="n-1j9dovb" style="" data-htmlpub-settled="1">
+    
+  <h3 style="font-size: 1.5rem; font-weight: 600; line-height: 1.3; margin: 0px 0px 1rem; font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(240, 240, 250); letter-spacing: -0.7px;">GARANTIA DE <span style="color: rgb(255, 159, 24);">7 DIAS</span><br></h3><p style="font-size: 1rem; font-weight: 400; line-height: 1.6; margin: 0px 0px 1rem; font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(136, 136, 168); letter-spacing: -0.7px;" data-nova-id="n-v6ejltr">Aplique durante 7 dias, se você não tiver resultado devolvemos totalmente seu dinheiro.</p></section><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-nova-id="n-b6mbq3w"><div style="margin: 0px auto; text-align: center; max-width: 760px;"><h2 style="font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin: 0px 0px 1rem; font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif; color: rgb(240, 240, 250); letter-spacing: -0.7px;" data-nova-id="n-oklemaz">DEPOIMENTOS</h2><div style="width: 56px; margin: 0px auto 12px;"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2756%27 height=%2756%27 viewBox=%270 0 56 56%27%3E%3Crect width=%2756%27 height=%2756%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(18.666666666666664 18.666666666666664) scale(0.7777777777777778)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 56 / 56; object-fit: cover; border-radius: 50%;"></div><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-weight: 600;" data-nova-id="n-rl2gxda">“Adorei! Recomendo mesmo ❤️”</p><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-size: 0.875rem; opacity: 0.7;">Ana, 47 anos</p></div></section><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-htmlpub-settled="1" data-nova-id="n-2pqqgga"><div style="margin: 0px auto; text-align: center; max-width: 760px;"><div style="width: 56px; margin: 0px auto 12px;"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2756%27 height=%2756%27 viewBox=%270 0 56 56%27%3E%3Crect width=%2756%27 height=%2756%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(18.666666666666664 18.666666666666664) scale(0.7777777777777778)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 56 / 56; object-fit: cover; border-radius: 50%;"></div><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-weight: 600;" data-nova-id="n-bffxc9y">“Super recomendo, principalmente para quem já tentou várias coisas.”</p><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-size: 0.875rem; opacity: 0.7;">Teresa, 53 anos </p></div></section><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-htmlpub-settled="1" data-nova-id="n-7t7yri9"><div style="margin: 0px auto; text-align: center; max-width: 760px;"><div style="width: 56px; margin: 0px auto 12px;"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2756%27 height=%2756%27 viewBox=%270 0 56 56%27%3E%3Crect width=%2756%27 height=%2756%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(18.666666666666664 18.666666666666664) scale(0.7777777777777778)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 56 / 56; object-fit: cover; border-radius: 50%;"></div><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-weight: 600;" data-nova-id="n-9ovdca5">“Meninas, façam! Eu estou mesmo contente por ter começado.”</p><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-size: 0.875rem; opacity: 0.7;">&nbsp;Carla, 41 anos&nbsp;<br></p></div></section><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-htmlpub-settled="1" data-nova-id="n-obu6ywe"><div style="margin: 0px auto; text-align: center; max-width: 760px;"><div style="width: 56px; margin: 0px auto 12px;"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2756%27 height=%2756%27 viewBox=%270 0 56 56%27%3E%3Crect width=%2756%27 height=%2756%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(18.666666666666664 18.666666666666664) scale(0.7777777777777778)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 56 / 56; object-fit: cover; border-radius: 50%;"></div><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-weight: 600;" data-nova-id="n-bvkqa5r">“Estou surpreendida com o quanto é fácil encaixar na rotina.”</p><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-size: 0.875rem; opacity: 0.7;">Helena, 58 anos </p></div></section><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-htmlpub-settled="1" data-nova-id="n-yaqwnld"><div style="margin: 0px auto; text-align: center; max-width: 760px;"><div style="width: 56px; margin: 0px auto 12px;"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2756%27 height=%2756%27 viewBox=%270 0 56 56%27%3E%3Crect width=%2756%27 height=%2756%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(18.666666666666664 18.666666666666664) scale(0.7777777777777778)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 56 / 56; object-fit: cover; border-radius: 50%;"></div><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-weight: 600;" data-nova-id="n-euamti3">“Ameiii 😍 Recomendo muito!”</p><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-size: 0.875rem; opacity: 0.7;">Isabel, 55 anos </p></div></section>
+
+  
+
+  
+
+  
+
+  <div class="container" style="">
+      
+
+      
+    </div><section style="padding: 64px 24px; width: 100%; box-sizing: border-box; position: relative;" data-nova-id="n-09x106r" data-htmlpub-settled="1"><div style="max-width: 1080px; margin: 0px auto; display: flex; flex-wrap: wrap; gap: 40px; align-items: center;"><div style="flex: 1 1 320px; min-width: 0px;" data-nova-id="n-ol3x053"><h1 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 16px; font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.15;" data-nova-id="n-qj5w8gq">VOLTE A GOSTAR DO QUE VÊ</h1><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 24px; font-size: 1.0625rem; line-height: 1.6; opacity: 0.85; color: rgb(136, 136, 168);" data-nova-id="n-704ng65">Imagine olhar uma foto em família sem procurar primeiro aquilo que incomoda.<br><br>Olhar no espelho e sentir que sua aparência combina mais com a mulher que você sente que é.</p></div><div style="flex: 1 1 320px; min-width: 0px;"><img src="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27560%27 height=%27420%27 viewBox=%270 0 560 420%27%3E%3Crect width=%27560%27 height=%27420%27 fill=%27%23E5E7EB%27/%3E%3Cg transform=%27translate(210 140) scale(5.833333333333333)%27 fill=%27none%27 stroke=%27%239CA3AF%27 stroke-width=%271.6%27%3E%3Crect x=%273%27 y=%273%27 width=%2718%27 height=%2718%27 rx=%272%27/%3E%3Ccircle cx=%279%27 cy=%279%27 r=%272%27/%3E%3Cpath d=%27m21 15-3.5-3.5L6 23%27/%3E%3C/g%3E%3C/svg%3E" alt="Placeholder image" style="display: block; width: 100%; height: auto; aspect-ratio: 560 / 420; object-fit: cover; border-radius: 12px;"></div></div><a href="#pagamento" style="display: inline-block; text-decoration: none; cursor: pointer; line-height: 1.2; padding: 19px; border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif; font-weight: 800; letter-spacing: 0.1px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; background: rgb(255, 61, 61); color: rgb(255, 255, 255); border-width: medium; border-style: none; border-color: currentcolor; border-image: none;" data-nova-id="n-6e7s962">ACESSE AGORA</a></section><section style="padding: 64px 24px; width: 100%; box-sizing: border-box;" data-nova-id="n-pkebojn"><div style="margin: 0px auto; max-width: 720px;"><h2 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 24px; text-align: center; font-size: clamp(1.5rem, 3vw, 2.25rem);" data-nova-id="n-ib6s4vo">FAQ</h2><div style="padding: 20px 0px; border-bottom: 1px solid rgba(0, 0, 0, 0.08);" data-nova-id="n-ymb2zzg"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.0625rem;">NÃO TENHO TEMPO.</h3><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-size: 0.9375rem; line-height: 1.6; opacity: 0.8;">São aproximadamente 3 minutos por dia.</p></div><div style="padding: 20px 0px; border-bottom: 1px solid rgba(0, 0, 0, 0.08);"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.0625rem;">“PRECISO DE EQUIPAMENTOS?”<br></h3><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-size: 0.9375rem; line-height: 1.6; opacity: 0.8;">Não. A rotina foi pensada para ser feita em casa.</p></div><div style="padding: 20px 0px; border-bottom: 1px solid rgba(0, 0, 0, 0.08);"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.0625rem;">“NÃO SEI FAZER OS MOVIMENTOS.”<br></h3><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-size: 0.9375rem; line-height: 1.6; opacity: 0.8;">Você acompanha o passo a passo guiado.</p></div><div style="padding: 20px 0px; border-bottom: 1px solid rgba(0, 0, 0, 0.08);" data-nova-id="n-urcoxg2"><h3 style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px 0px 8px; font-size: 1.0625rem;">“MINHA ROTINA É CORRIDA.”<br></h3><p style="font-family: -apple-system, BlinkMacSystemFont, Inter, sans-serif, system-ui, sans-serif; margin: 0px; font-size: 0.9375rem; line-height: 1.6; opacity: 0.8;">A proposta é justamente uma rotina curta e simples de manter.</p></div></div></section><div class="container">
+      
+
+      
+    </div><footer style="">
+    <div class="container" style="">
+      <p style="">© 2026 MÉTODO ROSTO REJUVENESCIDO. All rights reserved.</p>
+      <p style="margin-top: 8px;"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Contact</a><a href="#">Earnings Disclaimer</a></p>
+    </div>
+  </footer>
+
+
+
+</body></html>
