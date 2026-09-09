@@ -256,4 +256,87 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+(function () {
+  const TRACKING_PARAMS = [
+    'fbclid',
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_content',
+    'utm_term',
+    'xcod',
+    'sck'
+  ];
+
+  const currentParams = new URLSearchParams(window.location.search);
+  const savedParams = new URLSearchParams();
+
+  // Recupera parâmetros salvos anteriormente
+  try {
+    const saved = sessionStorage.getItem('tracking_params');
+    if (saved) {
+      const parsed = new URLSearchParams(saved);
+
+      TRACKING_PARAMS.forEach(function (param) {
+        if (parsed.has(param) && !savedParams.has(param)) {
+          savedParams.set(param, parsed.get(param));
+        }
+      });
+    }
+  } catch (e) {}
+
+  // Parâmetros da visita atual têm prioridade
+  TRACKING_PARAMS.forEach(function (param) {
+    if (currentParams.has(param)) {
+      const value = currentParams.get(param);
+
+      if (value !== '') {
+        savedParams.set(param, value);
+      }
+    }
+  });
+
+  // Salva para continuar durante a sessão
+  try {
+    sessionStorage.setItem(
+      'tracking_params',
+      savedParams.toString()
+    );
+  } catch (e) {}
+
+  function updateHotmartLinks() {
+    document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function (link) {
+      try {
+        const url = new URL(link.href);
+
+        TRACKING_PARAMS.forEach(function (param) {
+          if (savedParams.has(param) && !url.searchParams.has(param)) {
+            const value = savedParams.get(param);
+
+            if (value !== '') {
+              url.searchParams.set(param, value);
+            }
+          }
+        });
+
+        link.href = url.toString();
+      } catch (e) {}
+    });
+  }
+
+  // Atualiza links existentes
+  updateHotmartLinks();
+
+  // Caso algum botão/link seja criado depois pelo site
+  const observer = new MutationObserver(function () {
+    updateHotmartLinks();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script>
 </body></html>
