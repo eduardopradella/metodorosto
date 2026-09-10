@@ -95,6 +95,36 @@ footer{border-top:1px solid var(--line);padding:24px 16px;text-align:center;colo
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.mobile-cta{transition:none}}
 
+.bonus-stack{margin:16px 0 0;padding:0;list-style:none}
+.bonus-stack li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:12.5px;color:#cfcac2}
+.bonus-stack li b{color:#e8e3dc;font-weight:700}
+.bonus-stack .val{color:var(--muted);white-space:nowrap}
+.bonus-stack .val s{opacity:.75}
+.stack-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px}
+.stack-total s{color:var(--muted)}
+.stack-total b{color:var(--accent2);font-size:15px}
+.price-tag{margin:14px 0 2px}
+.price-tag .was{display:block;color:var(--muted);font-size:13px;text-decoration:line-through;opacity:.8}
+.price-tag .now{display:flex;align-items:baseline;gap:8px}
+.price-tag .now small{font-size:12px;font-weight:800;color:var(--ok);text-transform:uppercase;letter-spacing:.06em}
+.support-note{display:flex;align-items:center;gap:8px;margin-top:14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);font-size:12px;color:#dcd7d0}
+.support-note .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:0 0 7px}
+.offer.featured .badge.hot{background:var(--accent);color:#17120d;border-color:var(--accent)}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(8,7,6,.72);backdrop-filter:blur(3px);z-index:100;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.show{display:flex}
+.modal-box{position:relative;width:min(100%,440px);max-height:92vh;overflow:auto;background:var(--surface);border:1px solid rgba(214,161,91,.4);border-radius:18px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.5);text-align:center;animation:modalPop .22s ease}
+@keyframes modalPop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.modal-close{position:absolute;top:12px;right:14px;background:none;border:0;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;padding:4px}
+.modal-box .badge{margin-bottom:10px}
+.modal-box h3{font-size:21px;margin:6px 0 8px;letter-spacing:-.02em}
+.modal-box .desc{color:var(--muted);font-size:13.5px;margin:0 0 4px}
+.modal-box .bonus-stack{text-align:left}
+.modal-actions{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.modal-actions .cta{width:100%;margin-top:0}
+.modal-decline{background:none;border:1px solid var(--line);color:var(--muted);border-radius:12px;padding:13px 16px;font-size:12.5px;cursor:pointer;text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.modal-micro{margin-top:12px}
+
 .offer-preview{text-align:center;background:linear-gradient(180deg,var(--surface),var(--bg));}
 .offer-preview .eyebrow{margin-bottom:14px}
 .preview-points{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:24px auto 0;color:#e8e3dc;font-size:13px}
@@ -282,28 +312,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="badge">Acesso imediato</span>
         <h3>MÉTODO FACIAL ESSENCIAL</h3>
         <p class="desc">O método principal para começar sua rotina.</p>
-        <div class="price">€8,37</div>
-        <ul>
-          <li>✓ Rotina facial guiada de 3 minutos</li>
-          <li>✓ Cartilha passo a passo principal</li>
-          <li>✓ Acesso imediato e vitalício</li>
+        <ul class="bonus-stack">
+          <li><b>Rotina facial guiada de 3 minutos</b><span class="val"><s>€37</s></span></li>
+          <li><b>Cartilha passo a passo principal</b><span class="val"><s>€19</s></span></li>
+          <li><b>Acesso imediato e vitalício</b><span class="val"><s>€12</s></span></li>
         </ul>
-        <a class="cta" href="https://pay.hotmart.com/P107394701W?off=0leuwt05&checkoutMode=10">Quero começar</a>
+        <div class="price-tag">
+          <span class="was"><s>Valor total: €68</s></span>
+          <div class="now"><div class="price">€8,37</div></div>
+        </div>
+        <a class="cta" id="cta-essencial" href="https://pay.hotmart.com/P107394701W?off=0leuwt05&checkoutMode=10">Quero começar</a>
         <div class="micro">Compra segura · Garantia de 7 dias</div>
       </article>
 
       <article class="offer featured">
-        <span class="badge">Mais completo</span>
+        <span class="badge hot">Mais completo · Mais procurado</span>
         <h3>MÉTODO FACIAL PREMIUM</h3>
-        <p class="desc">O método completo, com as cartilhas extras.</p>
-        <div class="price">€15,79</div>
-        <ul>
-          <li>✓ Tudo do plano Essencial</li>
-          <li>✓ Cartilhas de papada, pé de galinha, rosto derretido e bigode chinês</li>
-          <li>✓ Atualizações futuras incluídas</li>
+        <p class="desc">O método completo, com as cartilhas extras e suporte direto.</p>
+        <ul class="bonus-stack">
+          <li><b>Tudo do plano Essencial</b><span class="val"><s>€68</s></span></li>
+          <li><b>Bônus · Cartilha papada</b><span class="val"><s>€19</s></span></li>
+          <li><b>Bônus · Cartilha pé de galinha</b><span class="val"><s>€19</s></span></li>
+          <li><b>Bônus · Cartilha rosto derretido</b><span class="val"><s>€19</s></span></li>
+          <li><b>Bônus · Cartilha bigode chinês</b><span class="val"><s>€19</s></span></li>
+          <li><b>Bônus · Atualizações futuras</b><span class="val"><s>€24</s></span></li>
+          <li><b>Bônus · Suporte rápido por email</b><span class="val"><s>€15</s></span></li>
         </ul>
+        <div class="stack-total"><span>Valor se comprado separado</span><s>€183</s></div>
+        <div class="price-tag">
+          <div class="now"><div class="price">€15,79</div><small>Hoje</small></div>
+        </div>
         <a class="cta" href="https://pay.hotmart.com/P107394701W?off=3qlagfku&checkoutMode=10">Quero o completo</a>
         <div class="micro">Compra segura · Garantia de 7 dias</div>
+        <div class="support-note"><span class="dot"></span>Suporte rápido por email incluído para tirar dúvidas durante a rotina</div>
       </article>
     </div>
 
@@ -339,6 +380,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>© 2026 MÉTODO ROSTO REJUVENESCIDO. Todos os direitos reservados.</footer>
 
 <div class="mobile-cta" id="mobileCta"><a href="#pagamento">Quero conhecer o método</a></div>
+
+<div class="modal-overlay" id="upsellModal" role="dialog" aria-modal="true" aria-labelledby="upsellTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="upsellClose" aria-label="Fechar">✕</button>
+    <span class="badge hot">Oferta única · Só nesta tela</span>
+    <h3 id="upsellTitle">Espera! Leve o método completo por só mais um pouco</h3>
+    <p class="desc">Antes de seguir com o Essencial, veja a condição especial do Premium — só aparece agora, uma vez.</p>
+    <ul class="bonus-stack">
+      <li><b>Tudo do plano Essencial</b><span class="val"><s>€68</s></span></li>
+      <li><b>Bônus · Cartilha papada</b><span class="val"><s>€19</s></span></li>
+      <li><b>Bônus · Cartilha pé de galinha</b><span class="val"><s>€19</s></span></li>
+      <li><b>Bônus · Cartilha rosto derretido</b><span class="val"><s>€19</s></span></li>
+      <li><b>Bônus · Cartilha bigode chinês</b><span class="val"><s>€19</s></span></li>
+      <li><b>Bônus · Suporte rápido por email</b><span class="val"><s>€15</s></span></li>
+    </ul>
+    <div class="stack-total"><span>Valor se comprado separado</span><s>€159</s></div>
+    <div class="price-tag">
+      <span class="was"><s>De €15,79</s></span>
+      <div class="now"><div class="price">€11,10</div><small>Só agora</small></div>
+    </div>
+    <div class="modal-actions">
+      <a class="cta" id="upsellAccept" href="https://pay.hotmart.com/P107394701W?off=hdi2x7nz&checkoutMode=10">Sim, quero o completo por €11,10</a>
+      <button class="modal-decline" id="upsellDecline">Não, prefiro seguir só com o Essencial</button>
+    </div>
+    <div class="micro modal-micro">Compra segura · Garantia de 7 dias</div>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -394,6 +462,75 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }
   });
+})();
+</script>
+
+<script>
+(function(){
+  var modal = document.getElementById("upsellModal");
+  var essencialBtn = document.getElementById("cta-essencial");
+  var acceptBtn = document.getElementById("upsellAccept");
+  var declineBtn = document.getElementById("upsellDecline");
+  var closeBtn = document.getElementById("upsellClose");
+  if(!modal || !essencialBtn || !acceptBtn || !declineBtn) return;
+
+  var attributionKeys = [
+    "fbclid","gclid","gbraid","wbraid",
+    "utm_source","utm_medium","utm_campaign","utm_content","utm_term",
+    "utm_id","utm_name","utm_source_platform","utm_creative_format",
+    "utm_marketing_tactic","xcod","sck"
+  ];
+
+  function withTracking(href){
+    try{
+      var url = new URL(href, window.location.href);
+      var stored = new URLSearchParams(sessionStorage.getItem("tracking_params") || "");
+      attributionKeys.forEach(function(key){
+        if(stored.has(key) && !url.searchParams.has(key)) url.searchParams.set(key, stored.get(key));
+      });
+      return url.toString();
+    }catch(e){ return href; }
+  }
+
+  function fireCheckoutEvents(href, label){
+    if(typeof window.fbq === "function") window.fbq("track","InitiateCheckout");
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event:"initiate_checkout", checkout_url:href, button_text:label});
+    if(typeof window.gtag === "function") window.gtag("event","begin_checkout",{link_url:href, button_text:label});
+  }
+
+  var essencialHref = essencialBtn.getAttribute("href");
+  var shown = false;
+
+  function openModal(){ modal.classList.add("show"); document.body.style.overflow = "hidden"; }
+  function closeModal(){ modal.classList.remove("show"); document.body.style.overflow = ""; }
+
+  // Ao clicar no plano Essencial, mostra a oferta do Premium com desconto uma única vez.
+  essencialBtn.addEventListener("click", function(e){
+    if(shown) return; // se clicar de novo depois de já ter visto, segue direto pro checkout
+    e.preventDefault();
+    shown = true;
+    openModal();
+  });
+
+  // Aceitou o upsell: vai para o checkout do Premium com desconto (€11,10).
+  acceptBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    var url = withTracking(acceptBtn.getAttribute("href"));
+    fireCheckoutEvents(url, "Upsell Premium 11,10 - aceitou");
+    window.location.href = url;
+  });
+
+  // Recusou (botão, X ou clique fora): vai para o checkout Essencial original.
+  function goEssencial(){
+    var url = withTracking(essencialHref);
+    fireCheckoutEvents(url, "Essencial - recusou upsell");
+    closeModal();
+    window.location.href = url;
+  }
+  declineBtn.addEventListener("click", function(e){ e.preventDefault(); goEssencial(); });
+  if(closeBtn) closeBtn.addEventListener("click", function(e){ e.preventDefault(); goEssencial(); });
+  modal.addEventListener("click", function(e){ if(e.target === modal) goEssencial(); });
 })();
 </script>
 
